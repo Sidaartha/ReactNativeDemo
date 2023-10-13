@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Image, Modal, Text } from "react-native";
+import { StyleSheet, View, TextInput, Image, Modal, Text, KeyboardAvoidingView } from "react-native";
 
 import CustomButton from './CustomButton';
 
@@ -24,7 +24,10 @@ export default function GoalInput(props) {
 
     return (
         <Modal visible={props.visible} animationType='slide'>
-            <View style={styles.inputContainer}>
+            <KeyboardAvoidingView 
+                style={styles.inputContainer}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
                 <Image style={styles.image} source={require('../assets/images/goal.png')} />
                 <TextInput
                     style={styles.textInput}
@@ -53,7 +56,7 @@ export default function GoalInput(props) {
                         />
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         </Modal>
     )
 }
